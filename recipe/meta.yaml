@@ -30,7 +30,6 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     - srsly >=2.3.0,<3.0.0
-    - cython
 
 test:
   imports:
