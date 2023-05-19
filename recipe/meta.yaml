@@ -12,8 +12,9 @@ source:
   sha256: {{ sha256sum }}
 
 build:
-  number: 1
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  number: 0
+  skip: True  # [py<36]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   build:
@@ -29,7 +30,6 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     - srsly >=2.3.0,<3.0.0
-    - cython
 
 test:
   imports:
@@ -42,13 +42,16 @@ test:
     - python -m pytest --tb=native --pyargs {{ modulename }}
 
 about:
-  home: http://github.com/explosion/spacy-pkuseg
+  home: https://github.com/explosion/spacy-pkuseg
   license: MIT
   license_family: MIT
   license_file: LICENSE
   summary: PKUSeg Chinese word segmentation toolkit for spaCy
-
-  doc_url: https://github.com/explosion/spacy-pkuseg
+  description: |
+    This package is a fork of pkuseg-python that simplifies installation
+    and serialization for use with spaCy. The underlying segmentation
+    tools remain unmodified.
+  doc_url: https://github.com/explosion/spacy-pkuseg/blob/master/readme/readme_english.md
   dev_url: https://github.com/explosion/spacy-pkuseg
 
 extra:
